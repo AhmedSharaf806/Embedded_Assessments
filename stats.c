@@ -1,21 +1,12 @@
 /******************************************************************************
- * Copyright (C) 2017 by Alex Fosdick - University of Colorado
- *
- * Redistribution, modification or use of this software in source or binary
- * forms is permitted as long as the files maintain this copyright. Users are 
- * permitted to modify this and use it to learn about the field of embedded
- * software. Alex Fosdick and the University of Colorado are not liable for any
- * misuse of this material. 
- *
+ * Copyright (C) 2019 by Ahmed Sharaf - University of Tanta
  *****************************************************************************/
 /**
- * @file <Add File Name> 
- * @brief <Add Brief Description Here >
+ * @file static.c 
+ * @brif source file of main function and define functions
  *
- * <Add Extended Description Here>
- *
- * @author <Add FirsName LastName>
- * @date <Add date >
+ * @author Ahmed Sharaf
+ * @date 1st, Oct. 2019
  *
  */
 
@@ -25,7 +16,7 @@
 #include "stats.h"
 
 /* Size of the Data Set */
-#define SIZE (40)
+#define SIZE 40
 
 void main() {
 
@@ -34,10 +25,123 @@ void main() {
                               200, 122, 150, 90,   92,  87, 177, 244,
                               201,   6,  12,  60,   8,   2,   5,  67,
                                 7,  87, 250, 230,  99,   3, 100,  90};
+  print_array(test,SIZE);               //print the array without sorting
+ 
+  sort_array(test,SIZE);		//sort the array from largest to smallest element
+ 
+  print_statistics(test,SIZE);          //print the statstics of the array
 
-  /* Other Variable Declarations Go Here */
-  /* Statistics and Printing Functions Go Here */
+  print_array(test,SIZE);               //print the array after sorting
+
+
+    
+
 
 }
 
-/* Add other Implementation File Code Here */
+/* definition of all functions */
+
+/* definition of print array function*/
+void print_array(unsigned char *test,unsigned int size)
+{
+	unsigned int i = 0;    //iteratior for the array
+	for(i=0; i<size; i++)
+		{
+			printf("%d ",*(test+i)); // print every element of the array
+		}
+	printf("\n"); // print end line after printing the array
+}
+
+/* definition of print statstics*/
+void print_statistics(unsigned char *test,unsigned int size)
+{
+	printf("The maximum value %d\n",find_maximum(test,size));  //print the maximum value in line
+	
+	printf("The minimum value %d\n",find_minimum(test,size));  //printf the minimum value in line
+	
+	printf("The mean  value %d\n",find_mean(test,size));       //print the mean value in line
+	
+	printf("The median value %d\n",find_median(test,size));    //print the median value in line
+}
+
+/*definition of sort array*/
+void sort_array(unsigned char *test,unsigned int size)
+{
+	unsigned int i,j;	//iterators for the array loops
+	unsigned int max_idx;   //index of the larger value to be compare
+	
+	for(i=0; i<size-1; i++)
+	{
+		max_idx = i;
+
+		for(j=i+1; j<size; j++)
+		{
+			if(*(test+j)>*(test+i))
+			{
+
+				unsigned int temp = *(test+i);
+				*(test+i) = *(test+j);
+				*(test+j) = temp;
+			}
+		}
+	}
+}
+
+/*definition maximum element of the array*/
+
+unsigned int find_maximum(unsigned char *test, unsigned int size)
+{
+	unsigned int max_value = *test;		//initial value for the maximum value to first element of the array
+	unsigned int i=0;			//iterator of the array loop
+
+	for(int i=0; i<size; i++)
+	{
+		if( max_value < (*(test+i)))
+			max_value = *(test+i);
+	}
+
+	return max_value;
+}
+
+/*definition minimum element of the array*/
+
+unsigned int find_minimum(unsigned char *test, unsigned int size)
+{
+        unsigned int mini_value = *test;         //initial value for the minimum value to first element of the array
+        unsigned int i=0;                       //iterator of the array loop
+
+        for(int i=0; i<size; i++)
+        {
+                if( mini_value > (*(test+i)))
+                        mini_value = *(test+i);
+        }
+
+        return mini_value;
+}
+
+/*definition mean of the array*/
+
+unsigned int find_mean(unsigned char *test, unsigned int size)
+{
+        unsigned int sum = 0;		         //initial value of sum of the array
+        unsigned int i=0;                        //iterator of the array loop
+
+        for(int i=0; i<size; i++)
+        {
+                sum += *(test+i);
+        }
+
+        return sum/40;
+}
+
+/*definition median of the array*/
+unsigned int find_median(unsigned char *test, unsigned int size)
+{
+	sort_array(test,SIZE);
+	unsigned int median = (*(test+(size/2)) + *(test+(size/2)+1))/2;
+	return median;
+}
+
+
+
+

@@ -1,6 +1,6 @@
 /******************************************************************************
  * Copyright (C) 2019 by Ahmed Sharaf - University of Tanta
- ******************************************************************************
+ *****************************************************************************/
 /**
  * @file <static.h> 
  * @brief header file for all functions' prototype
@@ -14,8 +14,7 @@
 
 /**
  * @brief  A function that prints the statistics of an array including minimum, maximum, mean, and median.
- * This function takes 2 parameters an unsigned char  pointer input a 32-b
-it, and an unsigned integer 32-bit.
+ * This function takes 2 parameters an unsigned char  pointer input a 32-bit, and an unsigned integer 32-bit.
  *
  * first input is the first address of array of 40 elements.
  * second input is the size of the array.
@@ -38,10 +37,10 @@ it, and an unsigned integer 32-bit.
  *  
  * This function will return the value of the median number.
  * @param print array
- * @retuen unsinged integer 32-bit.
+ * @retuen no return
  */
 
-void print_statistics(unsigned char *,unsigned int);
+void print_array(unsigned char *,unsigned int);
 
 /**
  * @brief  A function that return the median of the elements in the array
@@ -110,6 +109,6 @@ unsigned int find_minimum(unsigned char *,unsigned int);
  * @param print array
  * @retuen no return.
  */
-void find_median(unsigned char *,unsigned int);
+void sort_array(unsigned char *,unsigned int);
 
 #endif /* __STATS_H__ */
