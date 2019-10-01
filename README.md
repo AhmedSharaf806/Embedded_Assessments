@@ -1,3 +1,1 @@
-#####***********************************************************************
-# copyright (Copyright (C) 2019 by Ahmed Sharaf - University of Tanta, Egypt
-# **************************************************************************
+# Copyright (C) 2019 by Ahmed Sharaf - University of Tanta, Egypt
